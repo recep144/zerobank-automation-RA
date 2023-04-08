@@ -1,14 +1,13 @@
-Feature: Log in as user
+Feature: Transactions from Zero Bank
 
   Background:
     Given The user is on the login page
     When The user should be click Signin button
 
-  @WrongInfo
-  Scenario Outline: Negative Login with Different Info
+  @WrongInfoForLogin
+  Scenario Outline: Login in login page with negative info
     When The user logs in using "<userEmail>" and "<password>"
     Then Verify that "<text>" is visible on the login page
-
     Examples:
       | userEmail     | password      | text                             |
       |               |               | Login and/or password are wrong. |
@@ -54,10 +53,10 @@ Feature: Log in as user
       | Amount      | 1000000         |
       | Date        | 01042023        |
       | Description | trade           |
-     And Verify that "The payment was successfully submitted." message is visible on the Pay Bills page
+    And Verify that "The payment was successfully submitted." message is visible on the Pay Bills page
 
-
-  Scenario Outline: Negative Pay with Different Info
+  @WrongInfoForPay
+  Scenario Outline: Login sucessful pay page with negative info
     Then The user logs in using "username" and "password"
     Then The user logs the main page with the other url
     Then The user should be able to enter the "Pay Bills" page
@@ -66,8 +65,8 @@ Feature: Log in as user
     Examples:
       | Amount     | Date       | text                       |
       |            |            | Please fill in this field. |
-     # | alphabetic | alphabetic | Please fill in this field. |
-     # | */-+*/*    | 9999.99.99 | Please fill in this field. |
+      | alphabetic | alphabetic | Please fill in this field. |
+      | */-+*/*    | 9999.99.99 | Please fill in this field. |
 
 
 
