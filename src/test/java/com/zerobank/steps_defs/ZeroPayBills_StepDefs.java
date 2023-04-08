@@ -16,11 +16,10 @@ public class ZeroPayBills_StepDefs {
     ZeroPayBillsPage zeroPayBillsPage = new ZeroPayBillsPage();
 
     @Then("The user enter valid credentials with:")
-    public void theUserEnterValidCredentialsWith(Map<String,String> map) {
+    public void theUserEnterValidCredentialsWith(Map<String, String> map) {
 
         zeroPayBillsPage.paymentProcess(map.get("Payee"), map.get("Account"),
                 map.get("Amount"), map.get("Date"), map.get("Description"));
-
     }
 
     @And("Verify that {string} message is visible on the Pay Bills page")
@@ -29,20 +28,12 @@ public class ZeroPayBills_StepDefs {
         String actualMessage = zeroPayBillsPage.succesfullPayText.getText();
         System.out.println("expectedMessage = " + expectedMessage);
         System.out.println("actualMessage = " + actualMessage);
-        Assert.assertEquals(expectedMessage,actualMessage);
+        Assert.assertEquals(expectedMessage, actualMessage);
     }
 
-    @When("The user should be able to pay using {string} and {string}")
-    public void theUserShouldBeAbleToPayUsingAnd(String amount, String date) {
-        zeroPayBillsPage.enterTheWrongMessage(amount,date);
-    }
-    @And("Verify that {string} is visible on the Pay Bills page")
-    public void verifyThatIsVisibleOnThePayBillsPage(String message) {
-        Alert alert = Driver.get().switchTo().alert();
-        System.out.println(alert.getText());
-        Assert.assertTrue(alert.getText().contains("Please fill in this field."));
-
-
+    @And("The user should be able to pay using {string}, {string} and {string}")
+    public void theUserShouldBeAbleToPayUsingAnd(String amount, String date, String text) {
+        zeroPayBillsPage.enterTheWrongMessage(amount, date, text);
     }
 
 

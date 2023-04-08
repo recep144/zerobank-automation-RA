@@ -23,7 +23,7 @@ public class Login_StepDefs {
         loginPage.signinButtonInLoginPage();
     }
 
-    @Then("The user logs in using {string} and {string}")
+    @When("The user logs in using {string} and {string}")
     public void theUserLogsInUsingAnd(String userName, String password) {
         loginPage.signInButton(userName,password);
     }

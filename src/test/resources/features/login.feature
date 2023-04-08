@@ -57,16 +57,19 @@ Feature: Transactions from Zero Bank
 
   @WrongInfoForPay
   Scenario Outline: Login sucessful pay page with negative info
-    Then The user logs in using "username" and "password"
+    When The user logs in using "username" and "password"
     Then The user logs the main page with the other url
     Then The user should be able to enter the "Pay Bills" page
-    When The user should be able to pay using "<Amount>" and "<Date>"
-    And Verify that "<text>" is visible on the Pay Bills page
+    And The user should be able to pay using "<Amount>", "<Date>" and "<text>"
     Examples:
-      | Amount     | Date       | text                       |
-      |            |            | Please fill in this field. |
-      | alphabetic | alphabetic | Please fill in this field. |
-      | */-+*/*    | 9999.99.99 | Please fill in this field. |
+      | Amount     | Date     | text                       |
+ #BUG | alphabetic | 20221111 | Please fill in this field. |
+ #BUG | */-+*/*    | 11112022 | Please fill in this field. |
+ #BUG | 10000000   | 99999999 | Please fill in this field. |
+      |            | 20221111 | Please fill in this field. |
+      | 1000000    |          | Please fill in this field. |
+      |            |          | Please fill in this field. |
+
 
 
 

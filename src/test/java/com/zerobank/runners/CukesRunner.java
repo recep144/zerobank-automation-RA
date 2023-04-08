@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/zerobank/steps_defs",
         dryRun = false,
-        tags = "@wip"
+        tags = "@WrongInfoForPay"
 )
 public class CukesRunner {
 }
