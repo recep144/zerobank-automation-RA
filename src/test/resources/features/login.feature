@@ -3,9 +3,12 @@ Feature: Transactions from Zero Bank
   Background:
     Given The user is on the login page
     When The user should be click Signin button
+    Then The user logs in using "username" and "password"
+    Then The user logs the main page with the other url
+    Then The user should be able to login
 
   @WrongInfoForLogin
-  Scenario Outline: Login in login page with negative info
+  Scenario Outline: Login in login page with wrong info
     When The user logs in using "<userEmail>" and "<password>"
     Then Verify that "<text>" is visible on the login page
     Examples:
@@ -15,10 +18,7 @@ Feature: Transactions from Zero Bank
       | username      | WrongPassword | Login and/or password are wrong. |
 
   @wip
-  Scenario: Login as Zero Bank
-    Then The user logs in using "username" and "password"
-    Then The user logs the main page with the other url
-    Then The user should be able to login
+  Scenario: Login as Account Summary page
     And Verify that "Account Summary" is visible on the Main Page
     Then Validate all tabs are on the Account Summary Page
       | Cash Accounts       |
@@ -30,6 +30,7 @@ Feature: Transactions from Zero Bank
       | Credit Card |
       | Balance     |
 
+  Scenario: Savings account redirect in Account Activity page
     Then The user should be able to enter the "Account Activity" page
     Then Verify that "Savings" is visible on the Account Activity page
     Then Verify that account menu should be include the following options
@@ -40,12 +41,13 @@ Feature: Transactions from Zero Bank
       | Credit Card |
       | Brokerage   |
 
-    Then Verify that Transactions table should be include the following options
+    And Verify that Transactions table should be include the following options
       | Date        |
       | Description |
       | Deposit     |
       | Withdrawal  |
 
+  Scenario: Make payments in the Pay Bills page
     Then The user should be able to enter the "Pay Bills" page
     Then The user enter valid credentials with:
       | Payee       | Bank of America |
@@ -56,19 +58,20 @@ Feature: Transactions from Zero Bank
     And Verify that "The payment was successfully submitted." message is visible on the Pay Bills page
 
   @WrongInfoForPay
-  Scenario Outline: Login sucessful pay page with negative info
+  Scenario Outline: Login sucessful pay page with wrong info
     When The user logs in using "username" and "password"
     Then The user logs the main page with the other url
     Then The user should be able to enter the "Pay Bills" page
     And The user should be able to pay using "<Amount>", "<Date>" and "<text>"
     Examples:
-      | Amount     | Date     | text                       |
+      | Amount  | Date     | text                       |
  #BUG | alphabetic | 20221111 | Please fill in this field. |
  #BUG | */-+*/*    | 11112022 | Please fill in this field. |
  #BUG | 10000000   | 99999999 | Please fill in this field. |
-      |            | 20221111 | Please fill in this field. |
-      | 1000000    |          | Please fill in this field. |
-      |            |          | Please fill in this field. |
+      |         | 20221111 | Please fill in this field. |
+      | 1000000 |          | Please fill in this field. |
+      |         |          | Please fill in this field. |
+      |         | abc/*-   | Please fill in this field. |
 
 
 

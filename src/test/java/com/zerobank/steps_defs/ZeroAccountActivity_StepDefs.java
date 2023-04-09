@@ -2,6 +2,7 @@ package com.zerobank.steps_defs;
 
 import com.zerobank.pages.ZeroAccountActivityPage;
 import com.zerobank.utulities.BrowserUtils;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -30,7 +31,7 @@ public class ZeroAccountActivity_StepDefs {
 
     }
 
-    @Then("Verify that Transactions table should be include the following options")
+    @And("Verify that Transactions table should be include the following options")
     public void verifyThatTransactionsTableShouldBeIncludeTheFollowingOptions(List<String> menuNames) {
         List<String> expectedTransactionsMenu = menuNames;
         List<String> actualTransactionsMenu = BrowserUtils.getElementsText(zeroAccountActivityPage.menu);
